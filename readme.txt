@@ -2,8 +2,8 @@
 Contributors: sumobi, mordauk
 Tags: AffiliateWP, affiliate, Pippin Williamson, Andrew Munro, mordauk, pippinsplugins, sumobi, ecommerce, e-commerce, e commerce, selling, referrals, affiliate marketing
 Requires at least: 3.9
-Tested up to: 4.3.1
-Stable tag: 1.0.1
+Tested up to: 4.5.3
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,6 +29,10 @@ The standard behaviour of AffiliateWP is to prevent affiliates from earning a co
 OR you can just install it with WordPress by going to Plugins &rarr; Add New &rarr; and type this plugin's name.
 
 == Changelog ==
+
+= 1.0.2 =
+
+* Fix: Inactive affiliate's referral links could still store a visit.
 
 = 1.0.1 =
 
