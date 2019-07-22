@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: AffiliateWP - Allow Own Referrals
- * Plugin URI: https://affiliatewp.com/addons/allow-own-referrals
+ * Plugin URI: https://affiliatewp.com/add-ons/official-free/allow-own-referrals/
  * Description: Allows an affiliate to earn commission on their own referrals
  * Author: Sandhills Development, LLC
  * Author URI: https://sandhillsdev.com
