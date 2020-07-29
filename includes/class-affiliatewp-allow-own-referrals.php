@@ -39,7 +39,7 @@ if ( ! class_exists( 'AffiliateWP_Allow_Own_Referrals' ) ) {
 		 * @since 1.0.3
 		 * @var    string
 		 */
-		private $version = '1.0.0';
+		private $version = '1.0.3';
 
 		/**
 		 * Generates the main bootstrap instance.
