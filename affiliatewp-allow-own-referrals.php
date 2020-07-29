@@ -101,9 +101,6 @@ final class AffWP_Allow_Own_Referrals_Requirements_Check {
 		$this->file = __FILE__;
 		$this->base = plugin_basename( $this->file );
 
-		// Always load translations.
-		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
-
 		// Load or quit.
 		$this->met() ? $this->load() : $this->quit();
 	}
@@ -440,100 +437,6 @@ final class AffWP_Allow_Own_Referrals_Requirements_Check {
 		return $retval;
 	}
 
-	/** Translations **********************************************************/
-
-	/**
-	 * Loads the plugin textdomain.
-	 *
-	 * @since 1.0.3
-	 */
-	public function load_textdomain() {
-
-		/*
-		 * Due to the introduction of language packs through translate.wordpress.org,
-		 * loading our textdomain is complex.
-		 *
-		 * In v2.4.6, our textdomain changed from "edd" to "affiliatewp-allow-own-referrals".
-		 *
-		 * To support existing translation files from before the change, we must
-		 * look for translation files in several places and under several names.
-		 *
-		 * - wp-content/languages/plugins/affiliatewp-allow-own-referrals (introduced with language packs)
-		 * - wp-content/languages/edd/ (custom folder we have supported since 1.4)
-		 * - wp-content/plugins/affiliatewp-allow-own-referrals/languages/
-		 *
-		 * In wp-content/languages/edd/ we must look for:
-		 * - "affiliatewp-allow-own-referrals-{lang}_{country}.mo"
-		 *
-		 * In wp-content/languages/edd/ we must look for:
-		 * - "edd-{lang}_{country}.mo" as that was the old file naming convention
-		 *
-		 * In wp-content/languages/plugins/affiliatewp-allow-own-referrals/ we only need to look for:
-		 * - "affiliatewp-allow-own-referrals-{lang}_{country}.mo" as that is the new structure
-		 *
-		 * In wp-content/plugins/affiliatewp-allow-own-referrals/languages/, we must look for:
-		 * - both naming conventions. This is done by filtering "load_textdomain_mofile"
-		 */
-		add_filter( 'load_textdomain_mofile', array( $this, 'load_old_textdomain' ), 10, 2 );
-
-		// Set filter for plugin's languages directory.
-		$edd_lang_dir = dirname( $this->base ) . '/languages/';
-		$edd_lang_dir = apply_filters( 'edd_languages_directory', $edd_lang_dir );
-		$get_locale   = function_exists( 'get_user_locale' )
-			? get_user_locale()
-			: get_locale();
-
-		/**
-		 * Defines the plugin language locale used in Easy Digital Downloads.
-		 *
-		 * @var $get_locale The locale to use. Uses get_user_locale()` in WordPress 4.7 or greater,
-		 *                  otherwise uses `get_locale()`.
-		 */
-		$locale = apply_filters( 'plugin_locale', $get_locale, 'affiliatewp-allow-own-referrals' );
-		$mofile = sprintf( '%1$s-%2$s.mo', 'affiliatewp-allow-own-referrals', $locale );
-
-		// Look for wp-content/languages/edd/affiliatewp-allow-own-referrals-{lang}_{country}.mo
-		$mofile_global1 = WP_LANG_DIR . "/edd/affiliatewp-allow-own-referrals-{$locale}.mo";
-
-		// Look for wp-content/languages/edd/edd-{lang}_{country}.mo
-		$mofile_global2 = WP_LANG_DIR . "/edd/edd-{$locale}.mo";
-
-		// Look in wp-content/languages/plugins/affiliatewp-allow-own-referrals
-		$mofile_global3 = WP_LANG_DIR . "/plugins/affiliatewp-allow-own-referrals/{$mofile}";
-
-		// Try to load from first global location
-		if ( file_exists( $mofile_global1 ) ) {
-			load_textdomain( 'affiliatewp-allow-own-referrals', $mofile_global1 );
-
-			// Try to load from next global location
-		} elseif ( file_exists( $mofile_global2 ) ) {
-			load_textdomain( 'affiliatewp-allow-own-referrals', $mofile_global2 );
-
-			// Try to load from next global location
-		} elseif ( file_exists( $mofile_global3 ) ) {
-			load_textdomain( 'affiliatewp-allow-own-referrals', $mofile_global3 );
-
-			// Load the default language files
-		} else {
-			load_plugin_textdomain( 'affiliatewp-allow-own-referrals', false, $edd_lang_dir );
-		}
-	}
-
-	/**
-	 * Load a .mo file for the old textdomain if one exists.
-	 *
-	 * @see https://github.com/10up/grunt-wp-plugin/issues/21#issuecomment-62003284
-	 */
-	public function load_old_textdomain( $mofile, $textdomain ) {
-
-		// Fallback for old text domain
-		if ( ( 'affiliatewp-allow-own-referrals' === $textdomain ) && ! file_exists( $mofile ) ) {
-			$mofile = dirname( $mofile ) . DIRECTORY_SEPARATOR . str_replace( $textdomain, 'edd', basename( $mofile ) );
-		}
-
-		// Return (possibly overridden) mofile
-		return $mofile;
-	}
 }
 
 // Invoke the checker
