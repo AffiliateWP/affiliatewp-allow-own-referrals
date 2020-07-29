@@ -225,7 +225,7 @@ final class AffWP_Allow_Own_Referrals_Requirements_Check {
 	 * @return string
 	 */
 	private function unmet_requirements_label() {
-		return esc_html__( 'AffiliateWP - Plugin Template Requirements', 'affiliatewp-allow-own-referrals' );
+		return esc_html__( 'AffiliateWP - Allow Own Referrals Requirements', 'affiliatewp-allow-own-referrals' );
 	}
 
 	/**

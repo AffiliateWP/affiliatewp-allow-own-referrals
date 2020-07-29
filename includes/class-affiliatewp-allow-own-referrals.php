@@ -206,12 +206,12 @@ if ( ! class_exists( 'AffiliateWP_Allow_Own_Referrals' ) ) {
 
 			if ( file_exists( $mofile_global ) ) {
 
-				// Look in global /wp-content/languages/affiliatewp-flag-affiliates/ folder.
+				// Look in global /wp-content/languages/affiliatewp-allow-own-referrals/ folder.
 				load_textdomain( 'affiliatewp-allow-own-referrals', $mofile_global );
 
 			} elseif ( file_exists( $mofile_local ) ) {
 
-				// Look in local /wp-content/plugins/affiliatewp-flag-affiliates/languages/ folder.
+				// Look in local /wp-content/plugins/affiliatewp-allow-own-referrals/languages/ folder.
 				load_textdomain( 'affiliatewp-allow-own-referrals', $mofile_local );
 
 			} else {
@@ -283,7 +283,7 @@ if ( ! class_exists( 'AffiliateWP_Allow_Own_Referrals' ) ) {
 
 				$url = admin_url( 'admin.php?page=affiliate-wp-add-ons' );
 
-				$plugins_link = array( '<a alt="' . esc_attr__( 'Get more add-ons for AffiliateWP', 'affiliatewp-flag-affiliates' ) . '" href="' . esc_url( $url ) . '">' . __( 'More add-ons', 'affiliatewp-flag-affiliates' ) . '</a>' );
+				$plugins_link = array( '<a alt="' . esc_attr__( 'Get more add-ons for AffiliateWP', 'affiliatewp-allow-own-referrals' ) . '" href="' . esc_url( $url ) . '">' . __( 'More add-ons', 'affiliatewp-allow-own-referrals' ) . '</a>' );
 
 				$links = array_merge( $links, $plugins_link );
 			}
