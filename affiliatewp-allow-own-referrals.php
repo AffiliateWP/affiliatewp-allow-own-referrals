@@ -192,7 +192,8 @@ final class AffWP_Allow_Own_Referrals_Requirements_Check {
 	 * @return string Message for a single unmet requirement.
 	 */
 	private function unmet_requirements_description_text() {
-		return esc_html__( 'Requires %s (%s), but (%s) is installed.', 'affiliatewp-allow-own-referrals' );
+		/* translators: 1: Required Plugin name, 2: Required plugin version, 3: Actual plugin version */
+		return esc_html__( 'AffiliateWP Allow Own Referrals Requires %1$s (%2$s), but (%3$s) is installed.', 'affiliatewp-allow-own-referrals' );
 	}
 
 	/**
@@ -203,7 +204,8 @@ final class AffWP_Allow_Own_Referrals_Requirements_Check {
 	 * @return string Message for a single missing requirement.
 	 */
 	private function unmet_requirements_missing_text() {
-		return esc_html__( 'Requires %s (%s), but it appears to be missing.', 'affiliatewp-allow-own-referrals' );
+		/* translators: 1: Required Plugin name, 2: Required plugin version */
+		return esc_html__( 'Requires %1$s (%2$s), but it appears to be missing.', 'affiliatewp-allow-own-referrals' );
 	}
 
 	/**
