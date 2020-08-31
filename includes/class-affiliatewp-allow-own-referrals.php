@@ -183,7 +183,7 @@ if ( ! class_exists( 'AffiliateWP_Allow_Own_Referrals' ) ) {
 		 */
 		private function includes() {
 			// Bring in the autoloader.
-			require_once __DIR__ . '/lib/autoload.php';
+			require_once trailingslashit( dirname( $this->file ) ) . 'includes/lib/autoload.php';
 
 			// require_once AFFWP_AOR_PLUGIN_DIR . 'includes/file-name.php';
 		}
