@@ -61,7 +61,7 @@ final class AffWP_Allow_Own_Referrals_Requirements_Check {
 
 		// PHP
 		'php' => array(
-			'minimum' => '5.6.0',
+			'minimum' => '5.3.0',
 			'name'    => 'PHP',
 			'exists'  => true,
 			'current' => false,
