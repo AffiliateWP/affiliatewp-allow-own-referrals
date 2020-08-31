@@ -116,7 +116,7 @@ final class AffWP_Allow_Own_Referrals_Requirements_Check {
 		add_action( "after_plugin_row_{$this->base}",    array( $this, 'plugin_row_notice' ) );
 	}
 
-	/** Specific Methods ******************************************************/
+	/* Specific Methods ******************************************************/
 
 	/**
 	 * Load normally
@@ -239,7 +239,7 @@ final class AffWP_Allow_Own_Referrals_Requirements_Check {
 		return 'affiliatewp-allow-own-referrals-requirements';
 	}
 
-	/** Agnostic Methods ******************************************************/
+	/* Agnostic Methods ******************************************************/
 
 	/**
 	 * Outputs an additional row in the plugins list table to display messages.
@@ -363,7 +363,7 @@ final class AffWP_Allow_Own_Referrals_Requirements_Check {
 		return $links;
 	}
 
-	/** Checkers **************************************************************/
+	/* Checkers **************************************************************/
 
 	/**
 	 * Runs the actual dependencies checks and compiles the findings.
