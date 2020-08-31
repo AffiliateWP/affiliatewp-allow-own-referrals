@@ -161,12 +161,12 @@ if ( ! class_exists( 'AffiliateWP_Allow_Own_Referrals' ) ) {
 
 			// Plugin Folder Path.
 			if ( ! defined( 'AFFWP_AOR_PLUGIN_DIR' ) ) {
-				define( 'AFFWP_AOR_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+				define( 'AFFWP_AOR_PLUGIN_DIR', plugin_dir_path( $this->file ) );
 			}
 
 			// Plugin Folder URL.
 			if ( ! defined( 'AFFWP_AOR_PLUGIN_URL' ) ) {
-				define( 'AFFWP_AOR_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+				define( 'AFFWP_AOR_PLUGIN_URL', plugin_dir_url( $this->file ) );
 			}
 
 			// Plugin Root File.
@@ -231,7 +231,7 @@ if ( ! class_exists( 'AffiliateWP_Allow_Own_Referrals' ) ) {
 		 */
 		private function includes() {
 			// Bring in the autoloader.
-			require_once dirname( __FILE__ ) . '/lib/autoload.php';
+			require_once __DIR__ . '/lib/autoload.php';
 
 			// require_once AFFWP_AOR_PLUGIN_DIR . 'includes/file-name.php';
 		}
@@ -279,7 +279,7 @@ if ( ! class_exists( 'AffiliateWP_Allow_Own_Referrals' ) ) {
 		 */
 		public function plugin_meta( $links, $file ) {
 
-			if ( $file == plugin_basename( __FILE__ ) ) {
+			if ( $file == plugin_basename( $this->file ) ) {
 
 				$url = admin_url( 'admin.php?page=affiliate-wp-add-ons' );
 
@@ -314,7 +314,7 @@ function affiliatewp_allow_own_referrals() {
 			require_once 'includes/class-activation.php';
 		}
 
-		$activation = new AffiliateWP_Activation( plugin_dir_path( __FILE__ ), basename( __FILE__ ) );
+		$activation = new AffiliateWP_Activation( plugin_dir_path( $this->file ), basename( $this->file ) );
 		$activation = $activation->run();
 
 	} else {
