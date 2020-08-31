@@ -63,7 +63,6 @@ if ( ! class_exists( 'AffiliateWP_Allow_Own_Referrals' ) ) {
 			self::setup_instance( $file );
 
 			self::$instance->setup_constants();
-			self::$instance->load_textdomain();
 			self::$instance->includes();
 			self::$instance->hooks();
 
@@ -171,54 +170,7 @@ if ( ! class_exists( 'AffiliateWP_Allow_Own_Referrals' ) ) {
 
 			// Plugin Root File.
 			if ( ! defined( 'AFFWP_AOR_PLUGIN_FILE' ) ) {
-				define( 'AFFWP_AOR_PLUGIN_FILE', __FILE__ );
-			}
-		}
-
-		/**
-		 * Loads the add-on language files.
-		 *
-		 * @since 1.0.3
-		 *
-		 * @return void
-		 */
-		public function load_textdomain() {
-
-			// Set filter for plugin's languages directory.
-			$lang_dir = dirname( plugin_basename( __FILE__ ) ) . '/languages/';
-
-			/**
-			 * Filters the languages directory for the add-on.
-			 *
-			 * @since 1.0.3
-			 *
-			 * @param string $lang_dir Language directory.
-			 */
-			$lang_dir = apply_filters( 'affiliatewp_allow_own_referrals_languages_directory', $lang_dir );
-
-			// Traditional WordPress plugin locale filter..
-			$locale = apply_filters( 'plugin_locale', get_locale(), 'affiliatewp-allow-own-referrals' );
-			$mofile = sprintf( '%1$s-%2$s.mo', 'affiliatewp-allow-own-referrals', $locale );
-
-			// Setup paths to current locale file.
-			$mofile_local  = $lang_dir . $mofile;
-			$mofile_global = WP_LANG_DIR . '/affiliatewp-allow-own-referrals/' . $mofile;
-
-			if ( file_exists( $mofile_global ) ) {
-
-				// Look in global /wp-content/languages/affiliatewp-allow-own-referrals/ folder.
-				load_textdomain( 'affiliatewp-allow-own-referrals', $mofile_global );
-
-			} elseif ( file_exists( $mofile_local ) ) {
-
-				// Look in local /wp-content/plugins/affiliatewp-allow-own-referrals/languages/ folder.
-				load_textdomain( 'affiliatewp-allow-own-referrals', $mofile_local );
-
-			} else {
-
-				// Load the default language files.
-				load_plugin_textdomain( 'affiliatewp-allow-own-referrals', false, $lang_dir );
-
+				define( 'AFFWP_AOR_PLUGIN_FILE', $this->file );
 			}
 		}
 
