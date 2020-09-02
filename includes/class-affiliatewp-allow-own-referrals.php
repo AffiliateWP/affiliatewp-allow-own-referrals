@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Allow Own Referrals Base Class
+ *
+ * @package AffiliateWP\AffiliateWP_Allow_Own_Referrals
+ * @since   1.0.0
+ */
 
 if ( ! class_exists( 'AffiliateWP_Allow_Own_Referrals' ) ) {
 
